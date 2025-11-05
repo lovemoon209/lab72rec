@@ -1,0 +1,34 @@
+#include "matrixm2rec.h"
+#include <gtest/gtest.h>
+#include <iostream>
+
+using namespace std;
+
+TEST(MatrixTest, SwapMinMaxInRows) {
+    int matrix[2][3] = {{1, 9, 3}, {4, -1, 2}};
+    cout << "Before swap:\n";
+    for(int i=0;i<2;i++){ for(int j=0;j<3;j++) cout << matrix[i][j] << " "; cout << endl;}
+    SwapMinMaxInRows(matrix, 2, 3);
+    cout << "After swap:\n";
+    for(int i=0;i<2;i++){ for(int j=0;j<3;j++) cout << matrix[i][j] << " "; cout << endl;}
+    EXPECT_EQ(matrix[0][0], 9);
+    EXPECT_EQ(matrix[0][1], 1);
+}
+
+TEST(MatrixTest, SearchEvenElements) {
+    int a[9] = {1,3,4,5,2,7,8,9,6};
+    int kPos = -1, minEven = 0;
+    SearchFirstEven(a, 9, 0, kPos, minEven);
+    SearchMinEven(a, 9, kPos + 1, minEven);
+    cout << "First even pos: " << kPos << ", Min even: " << minEven << endl;
+    EXPECT_EQ(kPos, 2);   // правильна позиція першого парного
+    EXPECT_EQ(minEven, 2); // правильний мінімальний парний
+}
+
+TEST(MatrixTest, FindMinMaxIndices) {
+    int row[4] = {3, 1, 7, 4};
+    int minIndex = -1, maxIndex = -1;
+    FindMinMaxIndices(row, 4, 0, minIndex, maxIndex);
+    EXPECT_EQ(minIndex, 1);
+    EXPECT_EQ(maxIndex, 2);
+}
